@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SeaGuard | Global Ocean Cleanup</title>
+  <link rel="stylesheet" href="assets/css/main.css"><link rel="stylesheet" href="assets/css/animations.css"><link rel="stylesheet" href="assets/css/components.css">
+</head>
+<body>
+  <header class="site-header"><nav class="nav container">
+    <a class="brand" href="index.html"><span class="brand-mark">◒</span> SeaGuard</a>
+    <div class="nav-links"><a class="active" href="index.html">Mission</a><a href="#focus">Our work</a><a href="#map">Hotspots</a></div>
+    <div class="nav-actions"><a class="btn btn-ghost btn-small" href="login.html">Log in</a><a class="btn btn-small" href="register.html">Join a crew</a></div>
+  </nav></header>
+  <main>
+    <section class="hero">
+      <canvas id="ocean-canvas" aria-label="Animated seafloor depth map that bends around your cursor"></canvas>
+      <div class="hero-content container">
+        <div class="eyebrow">Sustainable Development Goal 14: life below water</div>
+        <h1>The sea keeps everything we give it.</h1>
+        <p>SeaGuard puts cleanup crews, reef teams and rescue responders on one dashboard, so every ton pulled out and every animal saved gets counted.</p>
+        <div class="hero-actions"><a class="btn" href="dashboard.html">Open the dashboard</a><a class="btn btn-ghost" href="register.html">Join a crew</a></div>
+      </div>
+    </section>
+    <section id="focus" class="section container">
+      <div class="section-heading"><h2>Three jobs. One tide.</h2><p>Coastal communities, researchers and field teams report to the same ledger, so progress is something you can measure.</p></div>
+      <div class="ledger">
+        <article class="ledger-row"><strong data-count="12345">0<small>tons</small></strong><div><h3>Plastic removed</h3><p>Crews log each haul from the field, and it shows up in the yearly total within the hour.</p></div></article>
+        <article class="ledger-row"><strong data-count="50">0<small>zones</small></strong><div><h3>Reefs restored</h3><p>Coral sites get protected space and regular surveys until they can grow back on their own.</p></div></article>
+        <article class="ledger-row"><strong data-count="245">0<small>species</small></strong><div><h3>Animals rescued</h3><p>Rapid response teams reach turtles, sharks and dugongs before a tangle becomes a loss.</p></div></article>
+      </div>
+      <div class="badge-row"><span class="seal"><svg viewBox="0 0 24 24" class="icon"><path d="m12 3 2.5 5.2L20 9l-4 4 .8 5.7-4.8-2.6-4.8 2.6L8 13 4 9l5.5-.8L12 3Z"/></svg> Clean Seas Verified</span><span class="seal"><svg viewBox="0 0 24 24" class="icon"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg> ISO 14001 coastal compliant</span></div>
+    </section>
+    <section id="map" class="section container"><div class="section-heading"><h2>Where crews are working right now.</h2></div>
+      <div class="glass-card map-card"><div class="map-lines"></div><div class="map-title"><span class="status">3 field teams active</span><h3>Ocean hotspot chart</h3><p class="muted">Live mission zones across the Pacific and the Coral Triangle.</p></div>
+        <span class="ping" style="left:36%;top:48%" data-label="Pacific Garbage Patch"></span><span class="ping" style="left:67%;top:64%" data-label="Coral Triangle"></span><span class="ping" style="left:52%;top:34%" data-label="Great Barrier Reef"></span></div></section>
+  </main>
+  <footer class="footer"><div class="container">© 2026 SeaGuard. Built for a cleaner blue future.</div></footer>
+  <script src="assets/js/animation.js"></script><script src="assets/js/app.js"></script>
+</body>
+</html>
