@@ -7,8 +7,9 @@ if (form) {
     const isValid = input.checkValidity();
     input.classList.toggle('valid', isValid);
     input.classList.toggle('invalid', !isValid && input.value.length > 0);
-    message.textContent = isValid ? 'Looks good ✓' : input.validationMessage;
-    message.style.color = isValid ? '#5eead4' : '';
+    message.textContent = isValid ? 'Looks good' : input.validationMessage;
+    message.style.color = isValid ? '#b6e36b' : '';
+    message.classList.remove('ok'); if (isValid) { void message.offsetWidth; message.classList.add('ok'); }
     return isValid;
   };
   form.querySelectorAll('input').forEach((input) => input.addEventListener('blur', () => validate(input)));

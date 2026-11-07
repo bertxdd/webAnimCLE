@@ -15,26 +15,30 @@
     <section class="hero">
       <canvas id="ocean-canvas" aria-label="Animated seafloor depth map that bends around your cursor"></canvas>
       <div class="hero-content container">
-        <div class="eyebrow">Sustainable Development Goal 14: life below water</div>
+        <div class="eyebrow">Sustainable Development Goal 14, built for the Philippines</div>
         <h1>The sea keeps everything we give it.</h1>
-        <p>SeaGuard puts cleanup crews, reef teams and rescue responders on one dashboard, so every ton pulled out and every animal saved gets counted.</p>
+        <p>SeaGuard puts Philippine cleanup crews, reef teams and rescue responders on one dashboard, so every ton pulled out and every animal saved gets counted.</p>
         <div class="hero-actions"><a class="btn" href="dashboard.html">Open the dashboard</a><a class="btn btn-ghost" href="register.html">Join a crew</a></div>
       </div>
     </section>
     <section id="focus" class="section container">
       <div class="section-heading"><h2>Three jobs. One tide.</h2><p>Coastal communities, researchers and field teams report to the same ledger, so progress is something you can measure.</p></div>
       <div class="ledger">
-        <article class="ledger-row"><strong data-count="12345">0<small>tons</small></strong><div><h3>Plastic removed</h3><p>Crews log each haul from the field, and it shows up in the yearly total within the hour.</p></div></article>
-        <article class="ledger-row"><strong data-count="50">0<small>zones</small></strong><div><h3>Reefs restored</h3><p>Coral sites get protected space and regular surveys until they can grow back on their own.</p></div></article>
-        <article class="ledger-row"><strong data-count="245">0<small>species</small></strong><div><h3>Animals rescued</h3><p>Rapid response teams reach turtles, sharks and dugongs before a tangle becomes a loss.</p></div></article>
+        <article class="ledger-row"><strong data-count="1942">0<small>tons</small></strong><div><h3>Plastic removed</h3><p>Crews log each haul from the field, and it shows up in the yearly total within the hour.</p></div></article>
+        <article class="ledger-row"><strong data-count="14">0<small>zones</small></strong><div><h3>Reefs restored</h3><p>Coral sites get protected space and regular surveys until they can grow back on their own.</p></div></article>
+        <article class="ledger-row"><strong data-count="87">0<small>species</small></strong><div><h3>Animals rescued in Philippine waters</h3><p>Rapid response teams reach turtles, sharks and dugongs before a tangle becomes a loss.</p></div></article>
       </div>
       <div class="badge-row"><span class="seal"><svg viewBox="0 0 24 24" class="icon"><path d="m12 3 2.5 5.2L20 9l-4 4 .8 5.7-4.8-2.6-4.8 2.6L8 13 4 9l5.5-.8L12 3Z"/></svg> Clean Seas Verified</span><span class="seal"><svg viewBox="0 0 24 24" class="icon"><circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/></svg> ISO 14001 coastal compliant</span></div>
     </section>
-    <section id="map" class="section container"><div class="section-heading"><h2>Where crews are working right now.</h2></div>
-      <div class="glass-card map-card"><div class="map-lines"></div><div class="map-title"><span class="status">3 field teams active</span><h3>Ocean hotspot chart</h3><p class="muted">Live mission zones across the Pacific and the Coral Triangle.</p></div>
-        <span class="ping" style="left:36%;top:48%" data-label="Pacific Garbage Patch"></span><span class="ping" style="left:67%;top:64%" data-label="Coral Triangle"></span><span class="ping" style="left:52%;top:34%" data-label="Great Barrier Reef"></span></div></section>
+    <section class="section container"><div class="section-heading"><h2>Why the Philippine sea needs a ledger.</h2><p>The country sits at the center of the Coral Triangle, and plastic is reaching it. The UN reports 6 activities supporting SDG 14 here, out of 220 across all goals (UN INFO).</p></div><div class="facts">
+<div class="fact"><strong>60%</strong><p>of the world's known shorefish species live in the Verde Island Passage in Batangas.</p><cite>Source: Global Affairs Canada, Pure Oceans story</cite></div>
+<div class="fact"><strong>20x</strong><p>more likely to develop disease: corals that sit in contact with plastic.</p><cite>Source: Global Affairs Canada, Pure Oceans story</cite></div>
+<div class="fact"><strong>163 million</strong><p>sachets from major brands are left in the Philippine environment every day.</p><cite>Source: Greenpeace Philippines</cite></div>
+<div class="fact"><strong>2.7 million t</strong><p>of plastic waste a year by a World Bank estimate, with about 20% ending up in the ocean.</p><cite>Source: Daily Guardian, citing the World Bank</cite></div></div></section>
+    <section id="map" class="section container"><div class="section-heading"><h2>Nine sites across the archipelago.</h2><p>Filter by year, focus area and status. Hover a dot for site analytics, or switch to clusters to see island groups.</p></div>
+      <div class="glass-card map-card"><div class="map-lines"></div><div class="ph-wrap"><div><div class="map-title"><span class="status">62 crews on the water</span><h3>Philippine cleanup network</h3></div><div data-ph-panel></div></div><div class="ph-map" data-ph-map></div></div></div></section>
   </main>
   <footer class="footer"><div class="container">© 2026 SeaGuard. Built for a cleaner blue future.</div></footer>
-  <script src="assets/js/animation.js"></script><script src="assets/js/app.js"></script>
+  <script src="assets/js/ph-path.js"></script><script src="assets/js/ph-map.js"></script><script src="assets/js/animation.js"></script><script src="assets/js/app.js"></script>
 </body>
 </html>
