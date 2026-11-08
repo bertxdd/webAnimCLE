@@ -1,13 +1,156 @@
-@keyframes rise{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
-@keyframes ping{0%{box-shadow:0 0 0 0 rgba(255,84,54,.6)}100%{box-shadow:0 0 0 26px rgba(255,84,54,0)}}
-@keyframes modalDrop{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:none}}
-@keyframes errorShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
-.modal-backdrop.is-open .modal{animation:modalDrop .35s ease both}
-.invalid{border-color:var(--buoy)!important;animation:errorShake .35s ease}
-.valid{border-color:var(--kelp)!important}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@keyframes phPulse{from{transform:scale(1);opacity:.8}to{transform:scale(3);opacity:0}}
-@keyframes dotIn{from{transform:scale(0)}}
-@keyframes shimmer{to{background-position:-200% 0}}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes checkPop{from{transform:scale(0) rotate(-45deg)}}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(34px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 84, 54, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 26px rgba(255, 84, 54, 0);
+  }
+}
+@keyframes modalDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes errorShake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+.modal-backdrop.is-open .modal {
+  animation: modalDrop 0.35s ease both;
+}
+.invalid {
+  border-color: var(--buoy) !important;
+  animation: errorShake 0.35s ease;
+}
+.valid {
+  border-color: var(--kelp) !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@keyframes phPulse {
+  from {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+@keyframes dotIn {
+  from {
+    transform: scale(0);
+  }
+}
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes checkPop {
+  from {
+    transform: scale(0) rotate(-45deg);
+  }
+}
+@keyframes swim {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateX(-14px) rotate(-2deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) translate(14px, -9px) rotate(2deg);
+  }
+}
+@keyframes bubbleUp {
+  from {
+    transform: translateY(0) scale(0.6);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(-210px) scale(1.1);
+    opacity: 0;
+  }
+}
+@keyframes waveSlide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-10deg);
+  }
+  50% {
+    transform: translateY(9px) rotate(7deg);
+  }
+}
+@keyframes swimRight {
+  from {
+    transform: translateX(-140px) scaleX(-1);
+  }
+  to {
+    transform: translateX(calc(100vw + 140px)) scaleX(-1);
+  }
+}
+@keyframes swimLeft {
+  from {
+    transform: translateX(calc(100vw + 140px));
+  }
+  to {
+    transform: translateX(-140px);
+  }
+}
+@keyframes jelly {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(24px, -34px);
+  }
+}
