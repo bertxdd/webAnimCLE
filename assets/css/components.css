@@ -92,7 +92,8 @@
 .ph-tip {
   position: absolute;
   z-index: 5;
-  width: 230px;
+  width: 280px;
+  max-width: calc(100vw - 20px);
   padding: 16px;
   color: var(--deeper);
   background: var(--bone);
@@ -117,15 +118,19 @@
 }
 .ph-tip dl {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 4px 12px;
   margin: 10px 0 0;
   font-size: 0.88rem;
+}
+.ph-tip dt {
+  white-space: nowrap;
 }
 .ph-tip dd {
   margin: 0;
   font-weight: 700;
   text-align: right;
+  white-space: nowrap;
 }
 .ph-bar {
   height: 5px;

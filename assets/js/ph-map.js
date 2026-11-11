@@ -184,16 +184,14 @@ document.querySelectorAll("[data-ph-map]").forEach((box) => {
       d = g.getBoundingClientRect();
     const x = d.left - b.left + d.width / 2,
       y = d.top - b.top + d.height / 2;
-    tip.style.left =
-      Math.max(
-        0,
-        Math.min(
-          x > b.width * 0.5 ? x - 246 : x + d.width / 2 + 12,
-          b.width - 230,
-        ),
-      ) + "px";
-    tip.style.top = Math.max(0, Math.min(y - 60, b.height - 200)) + "px";
     tip.classList.add("show");
+    const tipWidth = tip.offsetWidth,
+      tipHeight = tip.offsetHeight,
+      left = x > b.width * 0.5 ? x - tipWidth - 12 : x + d.width / 2 + 12;
+    tip.style.left =
+      Math.max(0, Math.min(left, b.width - tipWidth)) + "px";
+    tip.style.top =
+      Math.max(0, Math.min(y - tipHeight / 2, b.height - tipHeight)) + "px";
     marks
       .querySelectorAll(".ph-dot")
       .forEach((o) => o.classList.toggle("is-on", o === g));

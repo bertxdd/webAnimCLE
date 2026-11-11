@@ -20,6 +20,7 @@ if (oceanCanvas) {
     ctx.setTransform(r, 0, 0, r, 0, 0);
   };
   oceanCanvas.parentElement.addEventListener("pointermove", (e) => {
+    bounds = oceanCanvas.getBoundingClientRect();
     mouse.x = e.clientX - bounds.left;
     mouse.y = e.clientY - bounds.top;
     if (mouse.sx < 0) {
@@ -93,6 +94,11 @@ if (oceanCanvas) {
   new IntersectionObserver((es) => {
     heroVisible = es[0].isIntersecting;
     if (heroVisible && !running) {
+      bounds = oceanCanvas.getBoundingClientRect();
+      if (mouse.x >= 0) {
+        mouse.sx = mouse.x;
+        mouse.sy = mouse.y;
+      }
       running = true;
       requestAnimationFrame(draw);
     }
