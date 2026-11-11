@@ -1,4 +1,4 @@
-# SeaGuard Ops
+# AquaSave Ops
 
 Frontend-only operations analytics platform (SaaS-style) for coastal cleanup crews, local governments and partner businesses in the Philippines. Built for the ITL303 Endterm CLE, aligned with SDG 14 (Life Below Water). All figures are sample data.
 

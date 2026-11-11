@@ -92,12 +92,17 @@ h3 {
 }
 .brand {
   display: flex;
-  gap: 10px;
   align-items: center;
   font-weight: 800;
   font-size: 1.15rem;
   font-stretch: 75%;
   letter-spacing: 0.02em;
+}
+.brand-logo {
+  width: 112px;
+  height: 54px;
+  display: block;
+  object-fit: contain;
 }
 .brand-mark {
   width: 30px;
