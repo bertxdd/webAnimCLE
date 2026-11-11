@@ -1,4 +1,3 @@
-/* Sample data. Replace with real figures when you have them. */
 const PH_SITES = [
   {
     n: "Manila Bay",
@@ -125,7 +124,7 @@ const PH_CITIES = [
 document.querySelectorAll("[data-ph-map]").forEach((box) => {
   const panel = box.parentElement.querySelector("[data-ph-panel]");
   const st = { year: "2026", focus: "All", status: "All", mode: "sites" };
-  const FACTOR = { 2024: 0.64, 2025: 0.82, 2026: 1 };
+  const FACTOR = { 2021: 0.1545, 2022: 0.309, 2023: 0.489, 2024: 0.64, 2025: 0.82, 2026: 1 };
   const X = (lo) => (lo - 116.5) * Math.cos((12.5 * Math.PI) / 180) * 40,
     Y = (la) => (21.5 - la) * 40;
   const T = (s) => Math.round(s.t * FACTOR[st.year]);
@@ -286,7 +285,7 @@ document.querySelectorAll("[data-ph-map]").forEach((box) => {
     }
   });
   if (panel) {
-    panel.innerHTML = `<div class="ph-filters"><label>Year<select data-f="year"><option>2026</option><option>2025</option><option>2024</option></select></label><label>Focus area<select data-f="focus"><option>All</option><option>Plastic removal</option><option>Reef restoration</option><option>Wildlife rescue</option></select></label><label>Status<select data-f="status"><option>All</option><option>Active</option><option>Monitoring</option></select></label></div><p class="ph-sum" aria-live="polite"></p><button class="btn btn-ghost btn-small ph-toggle" aria-expanded="false">Show location details</button><div class="table-wrap ph-table" hidden><table><thead><tr><th>Site</th><th>Island group</th><th>Focus</th><th>Removed</th><th>Status</th></tr></thead><tbody></tbody></table></div>`;
+    panel.innerHTML = `<div class="ph-filters"><label>Year<select data-f="year"><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option></select></label><label>Focus area<select data-f="focus"><option>All</option><option>Plastic removal</option><option>Reef restoration</option><option>Wildlife rescue</option></select></label><label>Status<select data-f="status"><option>All</option><option>Active</option><option>Monitoring</option></select></label></div><p class="ph-sum" aria-live="polite"></p><button class="btn btn-ghost btn-small ph-toggle" aria-expanded="false">Show location details</button><div class="table-wrap ph-table" hidden><table><thead><tr><th>Site</th><th>Island group</th><th>Focus</th><th>Removed</th><th>Status</th></tr></thead><tbody></tbody></table></div>`;
     panel.querySelectorAll("select").forEach((s) =>
       s.addEventListener("change", () => {
         st[s.dataset.f] = s.value;

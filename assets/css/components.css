@@ -711,3 +711,25 @@
 .sf-top:hover {
   color: var(--buoy);
 }
+/* Performance: pause off-screen animation (see assets/js/perf.js) */
+.is-offscreen,
+.is-offscreen *,
+.is-offscreen *::before,
+.is-offscreen *::after {
+  animation-play-state: paused !important;
+}
+.sf-wave,
+.sf-fish,
+.sf-jelly,
+.sf-bottle,
+.sf-b,
+.art img {
+  will-change: transform;
+}
+/* Footer on every page */
+.page-shell {
+  min-height: calc(100vh - 340px);
+}
+.page-shell + .sea-footer {
+  margin-top: 0;
+}

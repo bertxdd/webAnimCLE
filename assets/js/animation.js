@@ -6,9 +6,11 @@ if (oceanCanvas) {
     mouse = { x: -999, y: -999, sx: -999, sy: -999 };
   let t = 0,
     w = 0,
-    h = 0;
+    h = 0,
+    heroVisible = true,
+    running = true;
   const resize = () => {
-    const r = window.devicePixelRatio || 1;
+    const r = Math.min(window.devicePixelRatio || 1, 2);
     w = oceanCanvas.clientWidth;
     h = oceanCanvas.clientHeight;
     oceanCanvas.width = w * r;
@@ -25,16 +27,22 @@ if (oceanCanvas) {
     }
   });
   const draw = () => {
+    if (!heroVisible) {
+      running = false;
+      return;
+    }
     t += still ? 0 : 0.006;
     mouse.sx += (mouse.x - mouse.sx) * 0.12;
     mouse.sy += (mouse.y - mouse.sy) * 0.12;
     ctx.clearRect(0, 0, w, h);
-    for (let i = 0; i < ROWS; i++) {
-      const k = i / (ROWS - 1),
+    const ROWSN = ROWS,
+      STEP = 8;
+    for (let i = 0; i < ROWSN; i++) {
+      const k = i / (ROWSN - 1),
         base = h * (0.28 + k * 0.72),
         amp = 20 + k * 70;
       ctx.beginPath();
-      for (let x = 0; x <= w + 8; x += 8) {
+      for (let x = 0; x <= w + 8; x += STEP) {
         let y =
           base -
           amp *
@@ -50,8 +58,8 @@ if (oceanCanvas) {
         x ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
       }
       ctx.strokeStyle =
-        i === ROWS - 1 ? "#ff5436" : `rgba(241,234,216,${0.28 + k * 0.5})`;
-      ctx.lineWidth = i === ROWS - 1 ? 2 : 1.2;
+        i === ROWSN - 1 ? "#ff5436" : `rgba(241,234,216,${0.28 + k * 0.5})`;
+      ctx.lineWidth = i === ROWSN - 1 ? 2 : 1.2;
       ctx.stroke();
       ctx.lineTo(w, h);
       ctx.lineTo(0, h);
@@ -81,6 +89,13 @@ if (oceanCanvas) {
     requestAnimationFrame(draw);
   };
   addEventListener("resize", resize);
+  new IntersectionObserver((es) => {
+    heroVisible = es[0].isIntersecting;
+    if (heroVisible && !running) {
+      running = true;
+      requestAnimationFrame(draw);
+    }
+  }).observe(oceanCanvas);
   resize();
   draw();
 }
@@ -135,7 +150,8 @@ if (chartCanvas) {
     last = 0,
     ha = 0,
     hx = 0,
-    shown = -2;
+    shown = -2,
+    dirty = true;
   const rad = DATA.map(() => 5);
   const X = (i) => pad.l + (i * (w - pad.l - pad.r)) / (N - 1);
   const Y = (v) => pad.t + (1 - v / GOAL) * (h - pad.t - pad.b);
@@ -159,12 +175,13 @@ if (chartCanvas) {
   };
 
   const resize = () => {
-    const r = window.devicePixelRatio || 1;
+    const r = Math.min(window.devicePixelRatio || 1, 2);
     w = chartCanvas.clientWidth;
     h = chartCanvas.clientHeight;
     chartCanvas.width = w * r;
     chartCanvas.height = h * r;
     ctx.setTransform(r, 0, 0, r, 0, 0);
+    dirty = true;
   };
   const trace = () => {
     const P = DATA.map((d, i) => [X(i), Y(d[1])]);
@@ -196,6 +213,15 @@ if (chartCanvas) {
         : ease(Math.min((now - t0) / 1900, 1));
     const k = reduce ? 1 : 0.18,
       active = hover >= 0 ? hover : pinned;
+    /* Only redraw while something is moving. */
+    const busy =
+      dirty ||
+      p < 1 ||
+      active >= 0 ||
+      ha > 0.003 ||
+      rad.some((r, i) => Math.abs(r - (i === active ? 9 : 5)) > 0.02);
+    if (!busy) return;
+    dirty = false;
     if (active >= 0) {
       last = active;
       if (ha < 0.02) hx = X(active);
@@ -204,7 +230,10 @@ if (chartCanvas) {
     ha += ((active >= 0 ? 1 : 0) - ha) * k;
     rad.forEach((r, i) => {
       rad[i] += ((i === active ? 9 : 5) - r) * k;
+      if (Math.abs(rad[i] - (i === active ? 9 : 5)) < 0.02)
+        rad[i] = i === active ? 9 : 5;
     });
+    if (active < 0 && ha < 0.003) ha = 0;
     if (active !== shown) {
       shown = active;
       readout.textContent =
@@ -391,6 +420,7 @@ if (chartCanvas) {
   });
   new IntersectionObserver((es) => {
     visible = es[0].isIntersecting;
+    if (visible) dirty = true;
   }).observe(chartCanvas);
   addEventListener("resize", resize);
   resize();
