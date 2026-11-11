@@ -84,7 +84,7 @@ const ANIMALS = [
       i,
     ) => `<button class="animal" style="--i:${i};--d:${a.d}s;--s:${a.scale || 1}" data-id="${a.id}" aria-label="${a.name}. Open video and details">
     <div class="stage"><i style="left:12%;animation-delay:0s"></i><i style="left:34%;animation-delay:1.6s"></i><i style="left:62%;animation-delay:.8s"></i><i style="left:84%;animation-delay:2.4s"></i>
-    <div class="art"><img src="${base}${a.img}" alt="" loading="lazy"></div>
+    <div class="art"><img src="${base}${a.img}" alt="" width="591" height="827" loading="lazy"></div>
     <span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20"><path d="M8 5v14l11-7z" fill="#08232a"/></svg></span></div>
     <div class="animal-body"><span class="tag">${a.tag}</span><h3>${a.name}</h3><p class="muted">${a.blurb}</p><small class="where">Where: ${a.where}</small></div></button>`,
   ).join("");

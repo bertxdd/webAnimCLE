@@ -7,10 +7,12 @@ if (oceanCanvas) {
   let t = 0,
     w = 0,
     h = 0,
+    bounds = oceanCanvas.getBoundingClientRect(),
     heroVisible = true,
     running = true;
   const resize = () => {
     const r = Math.min(window.devicePixelRatio || 1, 2);
+    bounds = oceanCanvas.getBoundingClientRect();
     w = oceanCanvas.clientWidth;
     h = oceanCanvas.clientHeight;
     oceanCanvas.width = w * r;
@@ -18,9 +20,8 @@ if (oceanCanvas) {
     ctx.setTransform(r, 0, 0, r, 0, 0);
   };
   oceanCanvas.parentElement.addEventListener("pointermove", (e) => {
-    const b = oceanCanvas.getBoundingClientRect();
-    mouse.x = e.clientX - b.left;
-    mouse.y = e.clientY - b.top;
+    mouse.x = e.clientX - bounds.left;
+    mouse.y = e.clientY - bounds.top;
     if (mouse.sx < 0) {
       mouse.sx = mouse.x;
       mouse.sy = mouse.y;
