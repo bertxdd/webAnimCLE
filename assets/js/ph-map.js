@@ -1,112 +1,13 @@
 const PH_SITES = [
-  {
-    n: "Manila Bay",
-    r: "Metro Manila",
-    g: "Luzon",
-    f: "Plastic removal",
-    la: 14.55,
-    lo: 120.95,
-    t: 612,
-    c: 18,
-    s: 9,
-    st: "Active",
-  },
-  {
-    n: "Verde Island Passage",
-    r: "Batangas",
-    g: "Luzon",
-    f: "Reef restoration",
-    la: 13.7,
-    lo: 121.0,
-    t: 248,
-    c: 6,
-    s: 14,
-    st: "Active",
-  },
-  {
-    n: "Albay Gulf",
-    r: "Bicol",
-    g: "Luzon",
-    f: "Wildlife rescue",
-    la: 13.1,
-    lo: 123.7,
-    t: 121,
-    c: 4,
-    s: 10,
-    st: "Monitoring",
-  },
-  {
-    n: "Puerto Princesa",
-    r: "Palawan",
-    g: "Palawan",
-    f: "Wildlife rescue",
-    la: 9.75,
-    lo: 118.75,
-    t: 164,
-    c: 5,
-    s: 12,
-    st: "Active",
-  },
-  {
-    n: "Iloilo Strait",
-    r: "Panay",
-    g: "Visayas",
-    f: "Plastic removal",
-    la: 10.7,
-    lo: 122.55,
-    t: 143,
-    c: 5,
-    s: 8,
-    st: "Active",
-  },
-  {
-    n: "Mactan Channel",
-    r: "Cebu",
-    g: "Visayas",
-    f: "Plastic removal",
-    la: 10.3,
-    lo: 123.95,
-    t: 231,
-    c: 9,
-    s: 11,
-    st: "Active",
-  },
-  {
-    n: "Leyte Gulf",
-    r: "Eastern Visayas",
-    g: "Visayas",
-    f: "Reef restoration",
-    la: 11.25,
-    lo: 125.0,
-    t: 118,
-    c: 4,
-    s: 7,
-    st: "Monitoring",
-  },
-  {
-    n: "Davao Gulf",
-    r: "Davao Region",
-    g: "Mindanao",
-    f: "Plastic removal",
-    la: 7.0,
-    lo: 125.65,
-    t: 196,
-    c: 7,
-    s: 10,
-    st: "Active",
-  },
-  {
-    n: "Zamboanga Coast",
-    r: "Zamboanga Peninsula",
-    g: "Mindanao",
-    f: "Wildlife rescue",
-    la: 6.9,
-    lo: 122.05,
-    t: 109,
-    c: 4,
-    s: 6,
-    st: "Monitoring",
-  },
+  { n: "Manila Bay", r: "Metro Manila", g: "Luzon", f: "Plastic removal", la: 14.55, lo: 120.95, t: [120, 190, 330, 455, 540, 612], c: 18, s: 9, st: "Active" },
+  { n: "Verde Island Passage", r: "Batangas", g: "Luzon", f: "Reef restoration", la: 13.7, lo: 121.0, t: [60, 90, 130, 180, 215, 248], c: 8, s: 4, st: "Active" },
+  { n: "Albay Gulf", r: "Bicol", g: "Luzon", f: "Wildlife rescue", la: 13.1, lo: 123.7, t: [25, 40, 62, 85, 105, 121], c: 4, s: 12, st: "Monitoring" },
+  { n: "Puerto Princesa", r: "Palawan", g: "Palawan", f: "Wildlife rescue", la: 9.75, lo: 118.75, t: [35, 55, 85, 115, 142, 164], c: 5, s: 14, st: "Active" },
+  { n: "Iloilo Strait", r: "Panay", g: "Visayas", f: "Plastic removal", la: 10.7, lo: 122.55, t: [40, 62, 95, 140, 175, 205], c: 8, s: 3, st: "Active" },
+  { n: "Cebu Strait", r: "Cebu", g: "Visayas", f: "Plastic removal", la: 10.3, lo: 123.95, t: [30, 48, 80, 112, 140, 158], c: 6, s: 5, st: "Active" },
+  { n: "Leyte Gulf", r: "Eastern Visayas", g: "Visayas", f: "Reef restoration", la: 11.25, lo: 125.0, t: [30, 48, 72, 100, 122, 142], c: 3, s: 3, st: "Active" },
+  { n: "Zamboanga Coast", r: "Zamboanga Peninsula", g: "Mindanao", f: "Wildlife rescue", la: 6.9, lo: 122.05, t: [22, 35, 52, 72, 90, 103], c: 3, s: 8, st: "Monitoring" },
+  { n: "Davao Gulf", r: "Davao Region", g: "Mindanao", f: "Plastic removal", la: 7.0, lo: 125.65, t: [42, 65, 98, 135, 165, 189], c: 7, s: 4, st: "Active" },
 ];
 const PH_CITIES = [
   ["Baguio", 16.4, 120.6],
@@ -124,11 +25,12 @@ const PH_CITIES = [
 document.querySelectorAll("[data-ph-map]").forEach((box) => {
   const panel = box.parentElement.querySelector("[data-ph-panel]");
   const st = { year: "2026", focus: "All", status: "All", mode: "sites" };
-  const FACTOR = { 2021: 0.1545, 2022: 0.309, 2023: 0.489, 2024: 0.64, 2025: 0.82, 2026: 1 };
+  const CF = [0.45, 0.55, 0.65, 0.75, 0.88, 1];
   const X = (lo) => (lo - 116.5) * Math.cos((12.5 * Math.PI) / 180) * 40,
     Y = (la) => (21.5 - la) * 40;
-  const T = (s) => Math.round(s.t * FACTOR[st.year]);
-  const sum = (a, k) => a.reduce((n, s) => n + (k === "t" ? T(s) : s[k]), 0);
+  const T = (s) => s.t[+st.year - 2021];
+  const SC = (s, k) => (+st.year === 2026 ? s[k] : Math.max(1, Math.round(s[k] * CF[+st.year - 2021])));
+  const sum = (a, k) => a.reduce((n, s) => n + (k === "t" ? T(s) : SC(s, k)), 0);
   const vis = () =>
     PH_SITES.filter(
       (s) =>
@@ -207,7 +109,7 @@ document.querySelectorAll("[data-ph-map]").forEach((box) => {
       max = Math.max(...PH_SITES.map(T));
     tipAt(
       g,
-      `<h4>${s.n}</h4><small>${s.r}, ${s.g}</small><dl><dt>Focus</dt><dd>${s.f}</dd><dt>Plastic removed</dt><dd>${T(s)} t</dd><dt>Active crews</dt><dd>${s.c}</dd><dt>Species rescued</dt><dd>${s.s}</dd><dt>Status</dt><dd>${s.st}</dd></dl><div class="ph-bar"><i style="width:${(T(s) / max) * 100}%"></i></div>`,
+      `<h4>${s.n}</h4><small>${s.r}, ${s.g}</small><dl><dt>Focus</dt><dd>${s.f}</dd><dt>Plastic removed</dt><dd>${T(s)} t</dd><dt>Active crews</dt><dd>${SC(s, "c")}</dd><dt>Species rescued</dt><dd>${SC(s, "s")}</dd><dt>Status</dt><dd>${s.st}</dd></dl><div class="ph-bar"><i style="width:${(T(s) / max) * 100}%"></i></div>`,
     );
   };
   const showCluster = (g) => {
@@ -228,15 +130,17 @@ document.querySelectorAll("[data-ph-map]").forEach((box) => {
         const x = a.reduce((n, s) => n + X(s.lo), 0) / a.length,
           y = a.reduce((n, s) => n + Y(s.la), 0) / a.length,
           r = 12 + a.length * 3;
-        h += `<g class="ph-dot ph-cl" tabindex="0" role="button" aria-label="${g}, ${a.length} sites" data-g="${g}" data-p="${x.toFixed(1)},${y.toFixed(1)}"><circle class="ph-pulse" r="${r}" style="animation-delay:${i * 0.3}s"/><circle class="ph-core ${a.length > 2 ? "big" : ""}" r="${r}"/><text class="ph-n" text-anchor="middle" dy=".35em">${a.length}</text></g>`;
+        h += `<g class="ph-dot ph-cl${a.every((s) => s.st === "Active") ? " act" : ""}" tabindex="0" role="button" aria-label="${g}, ${a.length} sites" data-g="${g}" data-p="${x.toFixed(1)},${y.toFixed(1)}"><circle class="ph-pulse" r="${r}" style="animation-delay:${i * 0.3}s"/><circle class="ph-core ${a.length > 2 ? "big" : ""}" r="${r}"/><text class="ph-n" text-anchor="middle" dy=".35em">${a.length}</text></g>`;
       });
     } else {
       v.forEach((s, i) => {
         const r = 4 + Math.sqrt(T(s)) / 5;
-        h += `<g class="ph-dot" tabindex="0" role="button" aria-label="${s.n}, ${T(s)} tons removed" data-i="${PH_SITES.indexOf(s)}" data-p="${X(s.lo).toFixed(1)},${Y(s.la).toFixed(1)}"><circle class="ph-pulse" r="${r}" style="animation-delay:${i * 0.3}s"/><circle class="ph-core" r="${r}" style="animation-delay:${0.3 + i * 0.1}s"/></g>`;
+        h += `<g class="ph-dot${s.st === "Active" ? " act" : ""}" tabindex="0" role="button" aria-label="${s.n}, ${T(s)} tons removed" data-i="${PH_SITES.indexOf(s)}" data-p="${X(s.lo).toFixed(1)},${Y(s.la).toFixed(1)}"><circle class="ph-pulse" r="${r}" style="animation-delay:${i * 0.3}s"/><circle class="ph-core" r="${r}" style="animation-delay:${0.3 + i * 0.1}s"/></g>`;
       });
     }
     marks.innerHTML = h;
+    if (window.gsap && !matchMedia("(prefers-reduced-motion: reduce)").matches)
+      gsap.fromTo(marks.querySelectorAll(".ph-dot"), { opacity: 0 }, { opacity: 1, duration: 0.5, stagger: 0.05, ease: "power2.out" });
     hide();
     apply();
     box
@@ -263,7 +167,7 @@ document.querySelectorAll("[data-ph-map]").forEach((box) => {
         v
           .map(
             (s) =>
-              `<tr><td>${s.n}</td><td>${s.g}</td><td>${s.f}</td><td>${T(s)} t</td><td><span class="tag">${s.st}</span></td></tr>`,
+              `<tr><td>${s.n}</td><td>${s.g}</td><td>${s.f}</td><td>${T(s)} t</td><td><span class="st${s.st === "Active" ? " act" : ""}">${s.st}</span></td></tr>`,
           )
           .join("") ||
         '<tr><td colspan="5">No sites match these filters. Reset one filter to see sites again.</td></tr>';
@@ -283,7 +187,7 @@ document.querySelectorAll("[data-ph-map]").forEach((box) => {
     }
   });
   if (panel) {
-    panel.innerHTML = `<div class="ph-filters"><label>Year<select data-f="year"><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option></select></label><label>Focus area<select data-f="focus"><option>All</option><option>Plastic removal</option><option>Reef restoration</option><option>Wildlife rescue</option></select></label><label>Status<select data-f="status"><option>All</option><option>Active</option><option>Monitoring</option></select></label></div><p class="ph-sum" aria-live="polite"></p><button class="btn btn-ghost btn-small ph-toggle" aria-expanded="false">Show location details</button><div class="table-wrap ph-table" hidden><table><thead><tr><th>Site</th><th>Island group</th><th>Focus</th><th>Removed</th><th>Status</th></tr></thead><tbody></tbody></table></div>`;
+    panel.innerHTML = `<div class="ph-filters"><label>Year<select data-f="year"><option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2022</option><option>2021</option></select></label><label>Focus area<select data-f="focus"><option>All</option><option>Plastic removal</option><option>Reef restoration</option><option>Wildlife rescue</option></select></label><label>Status<select data-f="status"><option>All</option><option>Active</option><option>Monitoring</option></select></label></div><p class="ph-sum" aria-live="polite"></p><button class="pill ph-toggle" aria-expanded="false">Show location details</button><div class="ph-table" hidden><table><thead><tr><th>Site</th><th>Island group</th><th>Focus</th><th>Removed</th><th>Status</th></tr></thead><tbody></tbody></table></div>`;
     panel.querySelectorAll("select").forEach((s) =>
       s.addEventListener("change", () => {
         st[s.dataset.f] = s.value;

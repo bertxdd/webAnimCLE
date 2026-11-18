@@ -1,374 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dashboard | AquaSave</title>
-    <link rel="icon" type="image/png" href="assets/images/graphics/logo/ASAVE.png" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/animations.css" />
-    <link rel="stylesheet" href="assets/css/components.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <nav class="nav container">
-        <a class="brand dashboard-brand" href="index.html"
-          ><img class="brand-logo" src="assets/images/graphics/logo/ASAVE.png" alt="AquaSave" width="152" height="94" /></a
-        >
-        <div class="nav-links">
-          <a class="active" href="dashboard.html">Dashboard</a
-          ><a href="index.html#map">Field map</a>
-        </div>
-        <div class="user-chip"><span class="avatar">AR</span> Alex Rivera</div>
-      </nav>
-    </header>
-    <main class="dashboard-layout">
-      <div class="dashboard-main container is-loading">
-        <div class="dashboard-top">
-          <div>
-            <div class="eyebrow">Philippines operations, 2026</div>
-            <h2>Good Morning!</h2>
-            <p class="muted">
-              Cleanup and rescue activity across nine Philippine sites.
-            </p>
-          </div>
-          <button class="btn btn-small">+ Log field update</button>
-        </div>
-        <section class="stats-grid">
-          <article class="glass-card stat-card">
-            <span>Plastic removed</span
-            ><strong data-count="1942">0<small> t</small></strong
-            ><span class="status">+18.4% vs 2025</span>
-          </article>
-          <article class="glass-card stat-card">
-            <span>Marine species rescued</span><strong data-count="87">0</strong
-            ><span class="status">9 sites reporting</span>
-          </article>
-          <article class="glass-card stat-card">
-            <span>Zones restored</span><strong data-count="14">0</strong
-            ><span class="status">Luzon, Visayas, Mindanao</span>
-          </article>
-        </section>
-        <section class="glass-card chart-card">
-          <h3>Plastic removal progress</h3>
-          <p class="muted">Share of the 2,500 t national goal, by year.</p>
-          <canvas
-            id="metrics-chart"
-            aria-label="Line chart of plastic removal progress from 2021 to 2026"
-          ></canvas>
-        </section>
-        <section class="glass-card list-card" style="margin-top: 16px">
-          <div class="ph-wrap">
-            <div>
-              <h3>Site analytics</h3>
-              <p class="muted">
-                Filter the nine sites, hover a dot for details, or open the
-                location table.
-              </p>
-              <div data-ph-panel></div>
-            </div>
-            <div class="ph-map" data-ph-map></div>
-          </div>
-        </section>
-        <div class="dashboard-grid">
-          <section class="glass-card list-card">
-            <h3>Rescue log</h3>
-            <div class="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Species</th>
-                    <th>Location</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Green turtle</td>
-                    <td>Puerto Princesa</td>
-                    <td><span class="tag">Released</span></td>
-                  </tr>
-                  <tr>
-                    <td>Whale shark</td>
-                    <td>Donsol, Sorsogon</td>
-                    <td><span class="tag">Recovering</span></td>
-                  </tr>
-                  <tr>
-                    <td>Dugong</td>
-                    <td>Zamboanga</td>
-                    <td><span class="tag">Monitoring</span></td>
-                  </tr>
-                  <tr>
-                    <td>Hawksbill turtle</td>
-                    <td>Batangas</td>
-                    <td><span class="tag">Released</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-          <section class="glass-card list-card">
-            <h3>Live activity</h3>
-            <ul class="feed" data-feed></ul>
-          </section>
-        </div>
-      </div>
-    </main>
-<footer class="sea-footer">
-      <div class="sf-scene" aria-hidden="true">
-        <svg
-          class="sf-wave sf-w1"
-          viewBox="0 0 2880 100"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,40.0L20,42.1L40,44.1L60,46.0L80,47.7L100,49.2L120,50.4L140,51.3L160,51.8L180,52.0L200,51.8L220,51.3L240,50.4L260,49.2L280,47.7L300,46.0L320,44.1L340,42.1L360,40.0L380,37.9L400,35.9L420,34.0L440,32.3L460,30.8L480,29.6L500,28.7L520,28.2L540,28.0L560,28.2L580,28.7L600,29.6L620,30.8L640,32.3L660,34.0L680,35.9L700,37.9L720,40.0L740,42.1L760,44.1L780,46.0L800,47.7L820,49.2L840,50.4L860,51.3L880,51.8L900,52.0L920,51.8L940,51.3L960,50.4L980,49.2L1000,47.7L1020,46.0L1040,44.1L1060,42.1L1080,40.0L1100,37.9L1120,35.9L1140,34.0L1160,32.3L1180,30.8L1200,29.6L1220,28.7L1240,28.2L1260,28.0L1280,28.2L1300,28.7L1320,29.6L1340,30.8L1360,32.3L1380,34.0L1400,35.9L1420,37.9L1440,40.0L1460,42.1L1480,44.1L1500,46.0L1520,47.7L1540,49.2L1560,50.4L1580,51.3L1600,51.8L1620,52.0L1640,51.8L1660,51.3L1680,50.4L1700,49.2L1720,47.7L1740,46.0L1760,44.1L1780,42.1L1800,40.0L1820,37.9L1840,35.9L1860,34.0L1880,32.3L1900,30.8L1920,29.6L1940,28.7L1960,28.2L1980,28.0L2000,28.2L2020,28.7L2040,29.6L2060,30.8L2080,32.3L2100,34.0L2120,35.9L2140,37.9L2160,40.0L2180,42.1L2200,44.1L2220,46.0L2240,47.7L2260,49.2L2280,50.4L2300,51.3L2320,51.8L2340,52.0L2360,51.8L2380,51.3L2400,50.4L2420,49.2L2440,47.7L2460,46.0L2480,44.1L2500,42.1L2520,40.0L2540,37.9L2560,35.9L2580,34.0L2600,32.3L2620,30.8L2640,29.6L2660,28.7L2680,28.2L2700,28.0L2720,28.2L2740,28.7L2760,29.6L2780,30.8L2800,32.3L2820,34.0L2840,35.9L2860,37.9L2880,40.0V100H0Z"
-          />
-        </svg>
-        <svg
-          class="sf-wave sf-w2"
-          viewBox="0 0 2880 100"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0,64.0L20,63.8L40,63.0L60,61.6L80,59.6L100,57.3L120,54.7L140,52.1L160,49.6L180,47.4L200,45.7L220,44.5L240,44.0L260,44.2L280,45.0L300,46.4L320,48.4L340,50.7L360,53.3L380,55.9L400,58.4L420,60.6L440,62.3L460,63.5L480,64.0L500,63.8L520,63.0L540,61.6L560,59.6L580,57.3L600,54.7L620,52.1L640,49.6L660,47.4L680,45.7L700,44.5L720,44.0L740,44.2L760,45.0L780,46.4L800,48.4L820,50.7L840,53.3L860,55.9L880,58.4L900,60.6L920,62.3L940,63.5L960,64.0L980,63.8L1000,63.0L1020,61.6L1040,59.6L1060,57.3L1080,54.7L1100,52.1L1120,49.6L1140,47.4L1160,45.7L1180,44.5L1200,44.0L1220,44.2L1240,45.0L1260,46.4L1280,48.4L1300,50.7L1320,53.3L1340,55.9L1360,58.4L1380,60.6L1400,62.3L1420,63.5L1440,64.0L1460,63.8L1480,63.0L1500,61.6L1520,59.6L1540,57.3L1560,54.7L1580,52.1L1600,49.6L1620,47.4L1640,45.7L1660,44.5L1680,44.0L1700,44.2L1720,45.0L1740,46.4L1760,48.4L1780,50.7L1800,53.3L1820,55.9L1840,58.4L1860,60.6L1880,62.3L1900,63.5L1920,64.0L1940,63.8L1960,63.0L1980,61.6L2000,59.6L2020,57.3L2040,54.7L2060,52.1L2080,49.6L2100,47.4L2120,45.7L2140,44.5L2160,44.0L2180,44.2L2200,45.0L2220,46.4L2240,48.4L2260,50.7L2280,53.3L2300,55.9L2320,58.4L2340,60.6L2360,62.3L2380,63.5L2400,64.0L2420,63.8L2440,63.0L2460,61.6L2480,59.6L2500,57.3L2520,54.7L2540,52.1L2560,49.6L2580,47.4L2600,45.7L2620,44.5L2640,44.0L2660,44.2L2680,45.0L2700,46.4L2720,48.4L2740,50.7L2760,53.3L2780,55.9L2800,58.4L2820,60.6L2840,62.3L2860,63.5L2880,64.0V100H0Z"
-          />
-        </svg>
-        <svg class="sf-bottle" viewBox="0 0 30 60">
-          <rect x="10" y="0" width="10" height="9" rx="2" fill="#ff5436" />
-          <path
-            d="M8 9h14l4 10v35a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V19z"
-            fill="#dff3f7"
-            opacity=".75"
-          />
-        </svg>
-        <svg class="sf-fish f1" viewBox="0 0 120 70">
-          <path
-            fill="currentColor"
-            d="M8 35C25 12 55 12 75 28l30-18-8 25 8 25-30-18C55 58 25 58 8 35Z"
-          />
-          <circle cx="37" cy="30" r="3" fill="#061a1f" />
-        </svg>
-        <svg class="sf-fish f2" viewBox="0 0 120 70">
-          <path
-            fill="currentColor"
-            d="M8 35C25 12 55 12 75 28l30-18-8 25 8 25-30-18C55 58 25 58 8 35Z"
-          />
-          <circle cx="37" cy="30" r="3" fill="#061a1f" />
-        </svg>
-        <svg class="sf-jelly" viewBox="0 0 40 60">
-          <path d="M4 26C4 6 36 6 36 26Z" fill="#c9b8ff" opacity=".8" />
-          <path
-            d="M10 26v22M17 26v30M24 26v26M31 26v20"
-            stroke="#c9b8ff"
-            stroke-width="2"
-            fill="none"
-            opacity=".7"
-            stroke-linecap="round"
-          />
-        </svg>
-        <span
-          class="sf-b"
-          style="left: 5%; --d: 6s; animation-delay: -0s"
-        ></span
-        ><span
-          class="sf-b"
-          style="left: 14%; --d: 8s; animation-delay: -2s"
-        ></span
-        ><span
-          class="sf-b"
-          style="left: 27%; --d: 7s; animation-delay: -4s"
-        ></span
-        ><span
-          class="sf-b"
-          style="left: 39%; --d: 9s; animation-delay: -1s"
-        ></span
-        ><span
-          class="sf-b"
-          style="left: 52%; --d: 6.5s; animation-delay: -3s"
-        ></span
-        ><span
-          class="sf-b"
-          style="left: 66%; --d: 8.5s; animation-delay: -5s"
-        ></span
-        ><span
-          class="sf-b"
-          style="left: 78%; --d: 7s; animation-delay: -2.5s"
-        ></span
-        ><span
-          class="sf-b"
-          style="left: 90%; --d: 9s; animation-delay: -6s"
-        ></span>
-        <svg
-          class="sf-reef"
-          viewBox="0 0 1200 160"
-          preserveAspectRatio="xMidYMax slice"
-        >
-          <path
-            d="M0 150C200 140 400 158 600 148S1000 142 1200 150V160H0Z"
-            fill="#0a2a31"
-          />
-          <g transform="translate(70 154) scale(1)">
-            <g class="sw" style="--t: 5.5s; animation-delay: -0s">
-              <path
-                d="M0 0C-14 -34 14 -66 0 -100S-12 -150 0 -170"
-                stroke="#6fa14a"
-                stroke-width="8"
-                fill="none"
-                stroke-linecap="round"
-              />
-            </g>
-          </g>
-          <g transform="translate(150 154) scale(1)">
-            <g class="sw" style="--t: 4.5s; animation-delay: -0.7s">
-              <path
-                d="M0 0V-56M0 -26L-16 -48M0 -38L14 -58M-16 -48L-18 -62M14 -58L18 -72"
-                stroke="#ff5436"
-                stroke-width="7"
-                stroke-linecap="round"
-                fill="none"
-              />
-            </g>
-          </g>
-          <g transform="translate(240 154) scale(1.1)">
-            <g class="sw" style="--t: 6s; animation-delay: -1.4s">
-              <path d="M-28 0C-28 -42 28 -42 28 0Z" fill="#ff8f6b" />
-              <circle cx="-9" cy="-16" r="3" fill="#fff" opacity=".35" />
-              <circle cx="8" cy="-24" r="2.5" fill="#fff" opacity=".35" />
-              <circle cx="12" cy="-11" r="2" fill="#fff" opacity=".35" />
-            </g>
-          </g>
-          <g transform="translate(330 154) scale(1)">
-            <g class="sw" style="--t: 5s; animation-delay: -2.1s">
-              <path
-                d="M0 0L-34 -56C-14 -72 14 -72 34 -56Z"
-                fill="#8c88c4"
-                opacity=".92"
-              />
-              <path
-                d="M0 0V-64M0 0L-18 -64M0 0L18 -64"
-                stroke="#061a1f"
-                stroke-opacity=".3"
-                stroke-width="2"
-                fill="none"
-              />
-            </g>
-          </g>
-          <g transform="translate(430 154) scale(1.2)">
-            <g class="sw" style="--t: 6.5s; animation-delay: -2.8s">
-              <path
-                d="M0 0C-14 -34 14 -66 0 -100S-12 -150 0 -170"
-                stroke="#8fbf5a"
-                stroke-width="8"
-                fill="none"
-                stroke-linecap="round"
-              />
-            </g>
-          </g>
-          <g transform="translate(540 154) scale(1.3)">
-            <g class="sw" style="--t: 5s; animation-delay: -3.5s">
-              <path
-                d="M0 0V-56M0 -26L-16 -48M0 -38L14 -58M-16 -48L-18 -62M14 -58L18 -72"
-                stroke="#ff8f6b"
-                stroke-width="7"
-                stroke-linecap="round"
-                fill="none"
-              />
-            </g>
-          </g>
-          <g transform="translate(640 154) scale(1.3)">
-            <g class="sw" style="--t: 7s; animation-delay: -4.2s">
-              <path d="M-28 0C-28 -42 28 -42 28 0Z" fill="#ff5436" />
-              <circle cx="-9" cy="-16" r="3" fill="#fff" opacity=".35" />
-              <circle cx="8" cy="-24" r="2.5" fill="#fff" opacity=".35" />
-              <circle cx="12" cy="-11" r="2" fill="#fff" opacity=".35" />
-            </g>
-          </g>
-          <g transform="translate(740 154) scale(1.2)">
-            <g class="sw" style="--t: 4.8s; animation-delay: -4.9s">
-              <path
-                d="M0 0L-34 -56C-14 -72 14 -72 34 -56Z"
-                fill="#c9b8ff"
-                opacity=".92"
-              />
-              <path
-                d="M0 0V-64M0 0L-18 -64M0 0L18 -64"
-                stroke="#061a1f"
-                stroke-opacity=".3"
-                stroke-width="2"
-                fill="none"
-              />
-            </g>
-          </g>
-          <g transform="translate(850 154) scale(1)">
-            <g class="sw" style="--t: 5.8s; animation-delay: -5.6s">
-              <path
-                d="M0 0C-14 -34 14 -66 0 -100S-12 -150 0 -170"
-                stroke="#6fa14a"
-                stroke-width="8"
-                fill="none"
-                stroke-linecap="round"
-              />
-            </g>
-          </g>
-          <g transform="translate(950 154) scale(1.1)">
-            <g class="sw" style="--t: 5.2s; animation-delay: -6.3s">
-              <path
-                d="M0 0V-56M0 -26L-16 -48M0 -38L14 -58M-16 -48L-18 -62M14 -58L18 -72"
-                stroke="#ff5436"
-                stroke-width="7"
-                stroke-linecap="round"
-                fill="none"
-              />
-            </g>
-          </g>
-          <g transform="translate(1040 154) scale(1)">
-            <g class="sw" style="--t: 6.2s; animation-delay: -7s">
-              <path d="M-28 0C-28 -42 28 -42 28 0Z" fill="#8c88c4" />
-              <circle cx="-9" cy="-16" r="3" fill="#fff" opacity=".35" />
-              <circle cx="8" cy="-24" r="2.5" fill="#fff" opacity=".35" />
-              <circle cx="12" cy="-11" r="2" fill="#fff" opacity=".35" />
-            </g>
-          </g>
-          <g transform="translate(1120 154) scale(1)">
-            <g class="sw" style="--t: 5s; animation-delay: -7.7s">
-              <path
-                d="M0 0L-34 -56C-14 -72 14 -72 34 -56Z"
-                fill="#ff8f6b"
-                opacity=".92"
-              />
-              <path
-                d="M0 0V-64M0 0L-18 -64M0 0L18 -64"
-                stroke="#061a1f"
-                stroke-opacity=".3"
-                stroke-width="2"
-                fill="none"
-              />
-            </g>
-          </g>
-          <g transform="translate(1170 154) scale(0.9)">
-            <g class="sw" style="--t: 6s; animation-delay: -8.4s">
-              <path
-                d="M0 0C-14 -34 14 -66 0 -100S-12 -150 0 -170"
-                stroke="#8fbf5a"
-                stroke-width="8"
-                fill="none"
-                stroke-linecap="round"
-              />
-            </g>
-          </g>
-        </svg>
-      </div>
-      <div class="sf-bar">
-        <div class="container sf-row">
-          <span>© 2026 AquaSave. Built for a cleaner blue future.</span
-          ><a class="sf-top" href="#">Back to top ↑</a>
-        </div>
-      </div>
-    </footer>
-    <script src="assets/js/perf.js"></script>
-    <script src="assets/js/ph-path.js"></script>
-    <script src="assets/js/ph-map.js"></script>
-    <script src="assets/js/animation.js"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Operations Dashboard | AquaSave</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;500;600;700&display=swap">
+<script>(function(){var n=navigator;if((n.hardwareConcurrency||8)<=4||(n.deviceMemory||8)<=4||matchMedia("(max-width:760px)").matches)document.documentElement.classList.add("lite")})()</script>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="ripples"></div><div id="depth" aria-hidden="true"><i class="d1"></i><i class="d2"></i><i class="d3"></i></div><div id="bubbles" aria-hidden="true"></div>
+<nav class="dash-nav">
+  <a class="brand" href="index.html"><img src="assets/images/graphics/logo/ASAVE.png" alt="AquaSave"></a>
+  <span class="nav-center">
+    <a class="navl" href="index.html">Mission</a>
+    <a class="navl" href="index.html#map">Hotspots</a>
+    <a class="navl" href="index.html#wildlife">Marine life</a>
+    <a class="navl" href="dashboard.html">Dashboard</a>
+  </span>
+  <span class="nav-right">
+    <span class="user-chip"><span class="avatar" id="userAvatar">?</span><span id="userNameNav">Responder</span></span>
+    <a class="btn ghost sm" href="login.html">Log in</a>
+  </span>
+</nav>
+<main class="dash-wrap is-loading" id="dash">
+  <div class="dash-head">
+    <div>
+      <span class="live"><i></i> Philippines operations, 2026</span>
+      <h1 id="welcomeHeading">Good morning!</h1>
+      <p style="margin:0;color:var(--mist)">Cleanup and rescue activity across nine Philippine sites.</p>
+    </div>
+    <div class="dash-actions"><button type="button" class="btn sm" id="openLog" style="border:0;cursor:pointer">+ Log field update</button></div>
+  </div>
+
+  <div class="kpi-grid three">
+    <div class="kpi"><div class="kpi-top"><span>Plastic removed</span></div><b id="kTons">0<small> t</small></b><span class="delta">+18.4% vs 2025</span></div>
+    <div class="kpi"><div class="kpi-top"><span>Marine species rescued</span></div><b id="kSp">0</b><span class="delta">9 sites reporting</span></div>
+    <div class="kpi"><div class="kpi-top"><span>Zones restored</span></div><b id="kZones">0</b><span class="delta">Luzon, Visayas, Mindanao</span></div>
+  </div>
+
+  <div class="dash-grid">
+    <div class="panel"><div class="panel-head"><h2>Archipelago Growth (2021–2026)</h2><span class="badge-pill lime">6-Year Cumulative Trend</span></div>
+      <p style="color:var(--mist);margin:0 0 .5rem;font-size:.9rem">Metric tons removed per year against the 2,500 t national goal.</p>
+      <canvas id="metrics-chart" aria-label="Line chart of plastic removal from 2021 to 2026"></canvas></div>
+    <div class="panel"><div class="panel-head"><h2>2026 Tonnage by Hotspot</h2><span class="badge-pill">Metric Tons Recovered</span></div><div class="bar-list" id="siteBars"></div></div>
+  </div>
+
+  <div class="panel"><div class="panel-head"><h2>Site analytics</h2></div>
+    <p style="color:var(--mist);margin:0 0 1rem">Filter the nine sites, hover a dot for details, or open the location table.</p>
+    <div class="phwrap" style="margin-top:0" data-lenis-prevent><div class="phpanel"><div data-ph-panel></div></div><div class="ph-map" data-ph-map></div></div></div>
+
+  <div class="dash-grid">
+    <div class="panel"><div class="panel-head"><h2>Rescue log</h2></div><div class="table-wrap"><table class="dtable-full" style="min-width:0"><thead><tr><th>Species</th><th>Location</th><th>Status</th></tr></thead><tbody>
+      <tr><td>Green turtle</td><td>Puerto Princesa</td><td><span class="tag ok">Released</span></td></tr>
+      <tr><td>Whale shark</td><td>Donsol, Sorsogon</td><td><span class="tag">Recovering</span></td></tr>
+      <tr><td>Dugong</td><td>Zamboanga</td><td><span class="tag">Monitoring</span></td></tr>
+      <tr><td>Hawksbill turtle</td><td>Batangas</td><td><span class="tag ok">Released</span></td></tr></tbody></table></div></div>
+    <div class="panel"><div class="panel-head"><h2>Live activity</h2></div><ul class="feed" data-feed></ul></div>
+  </div>
+
+  <div class="panel"><div class="panel-head"><h2>Field log ledger</h2><span style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn sm" id="addLog2" style="border:0;cursor:pointer">+ New field log</button><button type="button" class="btn ghost sm" id="clearLogs" style="cursor:pointer">Clear logs</button></span></div>
+    <div class="table-wrap"><table class="dtable-full"><thead><tr><th>ID</th><th>Date</th><th>Site</th><th>Activity</th><th>Plastic (t)</th><th>Rescues</th><th>Crew / Lead</th><th>Notes</th><th></th></tr></thead><tbody id="logsBody"></tbody></table></div></div>
+</main>
+<div class="reef" aria-hidden="true"><span class="reef-label">The reef floor</span>
+<svg viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" fill="none" stroke-linecap="round" stroke-linejoin="round">
+ <g class="reef-back" opacity=".55">
+  <g transform="translate(90 300)"><g class="sway"><path d="M0 0V-110M0 -50L-22 -85M0 -70L24 -105M-22 -85L-30 -110" stroke="#9333ea" stroke-width="11"/></g></g>
+  <g transform="translate(430 300)"><g class="sway"><path d="M0 0V-130M0 -60L-28 -100M0 -85L30 -125M30 -125L42 -150" stroke="#0EA5E9" stroke-width="12"/></g></g>
+  <g transform="translate(820 300)"><g class="sway"><path d="M0 0V-100M0 -45L-24 -80M0 -65L22 -98" stroke="#9333ea" stroke-width="11"/></g></g>
+  <g transform="translate(1110 300)"><g class="sway"><path d="M0 0V-120M0 -55L-26 -92M0 -80L28 -115" stroke="#0EA5E9" stroke-width="12"/></g></g>
+ </g>
+ <g class="reef-front">
+  <g transform="translate(40 300)"><g class="sway"><path d="M0 0V-60M0 -30L-16 -52M0 -42L18 -72" stroke="#fb7185" stroke-width="9"/></g></g>
+  <g transform="translate(170 300)"><g class="sway"><path d="M-40 0C-48 -60 -20 -110 0 -140C20 -110 48 -60 40 0Z" fill="rgba(251,113,133,.35)" stroke="#fb7185" stroke-width="4"/><path d="M0 0V-130M-16 0L-8 -110M16 0L8 -110M-28 0L-20 -90M28 0L20 -90" stroke="#fda4af" stroke-width="2"/></g></g>
+  <g transform="translate(300 300)"><path d="M-55 0A55 55 0 0 1 55 0Z" fill="#f59e0b"/><path d="M-38 -8Q-20 -40 0 -22T38 -8M-26 -30Q-6 -48 14 -34" stroke="#b45309" stroke-width="3"/></g>
+  <g transform="translate(380 300)"><g class="sway"><path d="M0 0C-14 -30 14 -50 0 -90C-14 -120 10 -140 0 -170" stroke="#2DD4BF" stroke-width="6"/></g></g>
+  <g transform="translate(520 300)"><g class="sway"><rect x="-10" y="-90" width="20" height="90" rx="10" fill="#a78bfa"/><rect x="14" y="-62" width="18" height="62" rx="9" fill="#c4b5fd"/><rect x="-32" y="-52" width="16" height="52" rx="8" fill="#8b5cf6"/></g></g>
+  <g transform="translate(640 300)"><g class="sway"><path d="M0 0V-80M0 -36L-20 -64M0 -52L22 -82M22 -82L30 -102M-20 -64L-30 -80" stroke="#fb923c" stroke-width="10"/></g></g>
+  <g transform="translate(760 300)"><path d="M-70 0A70 62 0 0 1 70 0Z" fill="#ec4899" opacity=".85"/><path d="M-48 -8Q-26 -46 0 -26T48 -8M-30 -36Q-6 -54 20 -38" stroke="#9d174d" stroke-width="3"/></g>
+  <g transform="translate(880 300)"><g class="sway"><path d="M0 0C14 -30 -14 -50 0 -90C14 -120 -10 -140 0 -170" stroke="#2DD4BF" stroke-width="6"/></g></g>
+  <g transform="translate(990 300)"><g class="sway"><path d="M-44 0C-52 -62 -22 -112 0 -146C22 -112 52 -62 44 0Z" fill="rgba(0,229,255,.25)" stroke="#00E5FF" stroke-width="4"/><path d="M0 0V-136M-18 0L-9 -114M18 0L9 -114M-30 0L-22 -94M30 0L22 -94" stroke="#67e8f9" stroke-width="2"/></g></g>
+  <g transform="translate(1100 300)"><g class="sway"><path d="M0 0V-70M0 -32L-18 -58M0 -48L20 -76" stroke="#fb7185" stroke-width="9"/></g></g>
+  <g transform="translate(1170 300)"><g class="sway"><rect x="-10" y="-70" width="20" height="70" rx="10" fill="#a78bfa"/><rect x="-30" y="-44" width="16" height="44" rx="8" fill="#8b5cf6"/></g></g>
+ </g>
+ <path d="M0 300V282C150 268 300 292 450 282S750 266 900 282 1100 290 1200 278V300Z" fill="#06222d"/>
+</svg></div>
+<footer>&copy; 2026 AquaSave. Built for a cleaner blue future. <a href="index.html" style="color:var(--foam);margin-left:12px">Back to home</a></footer>
+
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="logTitle"><div class="mdlg" style="max-width:540px;padding:1.6rem">
+  <button class="mclose" id="closeLog" type="button" aria-label="Close">×</button>
+  <span class="eyebrow" style="margin-bottom:.3rem">Field report</span>
+  <h3 id="logTitle" style="font-size:1.6rem;margin-bottom:.3rem">Log cleanup or rescue haul</h3>
+  <p style="font-size:.88rem;color:var(--mist);margin-bottom:1.2rem">Entries update the totals, charts and ledger immediately.</p>
+  <form id="logForm">
+    <div class="frow"><div class="fgroup"><label for="logSite">Cleanup hotspot</label><select id="logSite"></select></div>
+    <div class="fgroup"><label for="logType">Operation focus</label><select id="logType"><option>Plastic removal</option><option>Reef restoration</option><option>Wildlife rescue</option></select></div></div>
+    <div class="frow"><div class="fgroup"><label for="logTons">Plastic removed (metric tons)</label><input id="logTons" type="number" step="0.1" min="0" value="0" required></div>
+    <div class="fgroup"><label for="logSpecies">Marine animals aided</label><input id="logSpecies" type="number" step="1" min="0" value="0" required></div></div>
+    <div class="fgroup"><label for="logCrew">Crew name</label><input id="logCrew" type="text" placeholder="Crew name" required></div>
+    <div class="fgroup"><label for="logNotes">Field notes</label><textarea id="logNotes" rows="2" placeholder="Debris type, tide conditions, species rescued..." required></textarea></div>
+    <button type="submit" class="btn full">Publish to ledger</button>
+  </form></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="assets/js/ph-path.js"></script>
+<script src="assets/js/ph-map.js"></script>
+<script src="assets/js/chart.js"></script>
+<script src="assets/js/dash.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
 </html>
