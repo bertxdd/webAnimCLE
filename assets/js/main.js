@@ -145,26 +145,27 @@
         });
 
       // staggered reveals
-      if ($(".reveal").length) ScrollTrigger.batch(".reveal", {
-        start: "top 88%",
-        onEnter: function (els) {
-          gsap.fromTo(
-            els,
-            { y: 50, opacity: 0 },
-            {
-              y: 0,
-              opacity: 1,
-              duration: 0.9,
-              stagger: 0.12,
-              ease: "power3.out",
-              overwrite: true,
-            },
-          );
-        },
-        onLeaveBack: function (els) {
-          gsap.to(els, { y: 50, opacity: 0, duration: 0.4, overwrite: true });
-        },
-      });
+      if ($(".reveal").length)
+        ScrollTrigger.batch(".reveal", {
+          start: "top 88%",
+          onEnter: function (els) {
+            gsap.fromTo(
+              els,
+              { y: 50, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.9,
+                stagger: 0.12,
+                ease: "power3.out",
+                overwrite: true,
+              },
+            );
+          },
+          onLeaveBack: function (els) {
+            gsap.to(els, { y: 50, opacity: 0, duration: 0.4, overwrite: true });
+          },
+        });
       if ($(".reveal").length) gsap.set(".reveal", { opacity: 0, y: 50 });
 
       // counters (set the three data-count values on the Our work stats to your real totals)
@@ -210,7 +211,9 @@
 
       function on(el, ev, fn, o) {
         el.addEventListener(ev, fn, o);
-        offs.push(function () { el.removeEventListener(ev, fn, o); });
+        offs.push(function () {
+          el.removeEventListener(ev, fn, o);
+        });
       }
 
       // ===== animal cards: swim animation + video modal =====
@@ -332,27 +335,54 @@
           src: "Sightings vary with season and conditions.",
         },
       };
-      var modal = document.getElementById("mvid") && document.getElementById("modal"),
+      var modal =
+          document.getElementById("mvid") && document.getElementById("modal"),
         mvid = document.getElementById("mvid"),
         lastBtn = null;
       var mdlg = modal && modal.querySelector(".mdlg"),
         closing = false;
       function fromR(r) {
         var f = mdlg.getBoundingClientRect();
-        return "translate(" + (r.left - f.left) + "px," + (r.top - f.top) + "px) scale(" + r.width / f.width + "," + r.height / f.height + ")";
+        return (
+          "translate(" +
+          (r.left - f.left) +
+          "px," +
+          (r.top - f.top) +
+          "px) scale(" +
+          r.width / f.width +
+          "," +
+          r.height / f.height +
+          ")"
+        );
       }
       function openM(card) {
         var d = ANIMALS[card.dataset.id],
           title = card.querySelector("h3").textContent;
-        document.getElementById("mtag").textContent = card.querySelector(".tag").textContent;
+        document.getElementById("mtag").textContent =
+          card.querySelector(".tag").textContent;
         document.getElementById("mtitle").textContent = title;
-        document.getElementById("mwhere").textContent = card.querySelector(".where").textContent.replace("Where:", "Where to look:");
-        document.getElementById("mlist").innerHTML = d.bullets.map(function (b) { return "<li>" + b + "</li>"; }).join("");
+        document.getElementById("mwhere").textContent = card
+          .querySelector(".where")
+          .textContent.replace("Where:", "Where to look:");
+        document.getElementById("mlist").innerHTML = d.bullets
+          .map(function (b) {
+            return "<li>" + b + "</li>";
+          })
+          .join("");
         document.getElementById("msrc").textContent = d.src;
         var embed = d.video
-          ? '<iframe src="https://www.youtube-nocookie.com/embed/' + d.video + '?autoplay=1&rel=0&playsinline=1" title="' + title + ' video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
-          : '<div><p style="color:var(--ice);font-weight:700">Video coming soon</p><a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=' + encodeURIComponent(title + " Philippines") + '">Watch on YouTube</a></div>';
-        document.getElementById("mwatch").href = d.video ? "https://www.youtube.com/watch?v=" + d.video : "https://www.youtube.com/results?search_query=" + encodeURIComponent(title + " Philippines");
+          ? '<iframe src="https://www.youtube-nocookie.com/embed/' +
+            d.video +
+            '?autoplay=1&rel=0&playsinline=1" title="' +
+            title +
+            ' video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>'
+          : '<div><p style="color:var(--ice);font-weight:700">Video coming soon</p><a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=' +
+            encodeURIComponent(title + " Philippines") +
+            '">Watch on YouTube</a></div>';
+        document.getElementById("mwatch").href = d.video
+          ? "https://www.youtube.com/watch?v=" + d.video
+          : "https://www.youtube.com/results?search_query=" +
+            encodeURIComponent(title + " Philippines");
         mvid.innerHTML = "";
         modal.classList.add("open");
         document.documentElement.classList.add("modal-open");
@@ -360,13 +390,32 @@
         closing = false;
         lastBtn = card;
         if (lenis) lenis.stop();
-        var loadEmbed = function () { if (modal.classList.contains("open") && !closing) mvid.innerHTML = embed; };
+        var loadEmbed = function () {
+          if (modal.classList.contains("open") && !closing)
+            mvid.innerHTML = embed;
+        };
         if (!reduce) {
           var r = card.getBoundingClientRect();
           mdlg.style.willChange = "transform, opacity";
-          mdlg.animate([{ transform: fromR(r), opacity: 0.85 }, { transform: "none", opacity: 1 }], { duration: 520, easing: "cubic-bezier(.2,.85,.25,1)" }).onfinish = function () { mdlg.style.willChange = ""; loadEmbed(); };
+          mdlg.animate(
+            [
+              { transform: fromR(r), opacity: 0.85 },
+              { transform: "none", opacity: 1 },
+            ],
+            { duration: 520, easing: "cubic-bezier(.2,.85,.25,1)" },
+          ).onfinish = function () {
+            mdlg.style.willChange = "";
+            loadEmbed();
+          };
           [mvid, modal.querySelector(".minfo")].forEach(function (el, i) {
-            el.animate([{ opacity: 0, transform: "translateY(16px)" }, { opacity: 0, transform: "translateY(16px)", offset: 0.5 }, { opacity: 1, transform: "none" }], { duration: 800 + i * 120, easing: "ease-out" });
+            el.animate(
+              [
+                { opacity: 0, transform: "translateY(16px)" },
+                { opacity: 0, transform: "translateY(16px)", offset: 0.5 },
+                { opacity: 1, transform: "none" },
+              ],
+              { duration: 800 + i * 120, easing: "ease-out" },
+            );
           });
           modal.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
           card.style.visibility = "hidden";
@@ -374,14 +423,21 @@
         document.getElementById("mclose").focus({ preventScroll: true });
       }
       function finishM() {
-        mdlg.getAnimations().forEach(function (x) { x.cancel(); });
-        modal.getAnimations().forEach(function (x) { x.cancel(); });
+        mdlg.getAnimations().forEach(function (x) {
+          x.cancel();
+        });
+        modal.getAnimations().forEach(function (x) {
+          x.cancel();
+        });
         modal.classList.remove("open");
         document.documentElement.classList.remove("modal-open");
         gsap.globalTimeline.resume();
         closing = false;
         if (lenis) lenis.start();
-        if (lastBtn) { lastBtn.style.visibility = ""; lastBtn.querySelector(".play").focus({ preventScroll: true }); }
+        if (lastBtn) {
+          lastBtn.style.visibility = "";
+          lastBtn.querySelector(".play").focus({ preventScroll: true });
+        }
       }
       function closeM() {
         if (closing || !modal.classList.contains("open")) return;
@@ -390,24 +446,58 @@
         closing = true;
         var r = lastBtn.getBoundingClientRect();
         mdlg.style.willChange = "transform, opacity";
-        mdlg.animate([{ transform: "none", opacity: 1 }, { transform: fromR(r), opacity: 0.2 }], { duration: 380, easing: "cubic-bezier(.5,0,.75,0)", fill: "forwards" }).onfinish = function () { mdlg.style.willChange = ""; finishM(); };
-        modal.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 380, fill: "forwards" });
+        mdlg.animate(
+          [
+            { transform: "none", opacity: 1 },
+            { transform: fromR(r), opacity: 0.2 },
+          ],
+          {
+            duration: 380,
+            easing: "cubic-bezier(.5,0,.75,0)",
+            fill: "forwards",
+          },
+        ).onfinish = function () {
+          mdlg.style.willChange = "";
+          finishM();
+        };
+        modal.animate([{ opacity: 1 }, { opacity: 0 }], {
+          duration: 380,
+          fill: "forwards",
+        });
       }
       if ("IntersectionObserver" in window) {
-        var vio = new IntersectionObserver(function (es) { es.forEach(function (e) { e.target.classList.toggle("offscreen", !e.isIntersecting); }); }, { rootMargin: "120px" });
-        $(".acard").forEach(function (c) { vio.observe(c); });
-        offs.push(function () { vio.disconnect(); });
-      }
-      if (modal) $(".acard").forEach(function (c) {
-        on(c.querySelector(".athumb"), "click", function () {
-          openM(c);
+        var vio = new IntersectionObserver(
+          function (es) {
+            es.forEach(function (e) {
+              e.target.classList.toggle("offscreen", !e.isIntersecting);
+            });
+          },
+          { rootMargin: "120px" },
+        );
+        $(".acard").forEach(function (c) {
+          vio.observe(c);
         });
-      });
+        offs.push(function () {
+          vio.disconnect();
+        });
+      }
+      if (modal)
+        $(".acard").forEach(function (c) {
+          on(c.querySelector(".athumb"), "click", function () {
+            openM(c);
+          });
+        });
       if (modal) {
         on(document.getElementById("mclose"), "click", closeM);
-        on(modal, "click", function (e) { if (e.target === modal) closeM(); });
-        on(document, "keydown", function (e) { if (e.key === "Escape" && modal.classList.contains("open")) closeM(); });
-        offs.push(function () { if (modal.classList.contains("open")) finishM(); });
+        on(modal, "click", function (e) {
+          if (e.target === modal) closeM();
+        });
+        on(document, "keydown", function (e) {
+          if (e.key === "Escape" && modal.classList.contains("open")) closeM();
+        });
+        offs.push(function () {
+          if (modal.classList.contains("open")) finishM();
+        });
       }
 
       // subtle water ripples: a small pool of rings is reused, so nothing piles up. Off over the map and while the modal is open.
@@ -416,7 +506,10 @@
         lx = -99,
         ly = -99;
       function blocked(t) {
-        return document.documentElement.classList.contains("modal-open") || (t && t.closest && t.closest(".phwrap,#modal"));
+        return (
+          document.documentElement.classList.contains("modal-open") ||
+          (t && t.closest && t.closest(".phwrap,#modal"))
+        );
       }
       if (!reduce && !lite && rip) {
         var pool = [],
@@ -432,12 +525,23 @@
           gsap.fromTo(
             pool[pi++ % pool.length],
             { x: x, y: y, scale: 0.2, opacity: big ? 0.5 : 0.28 },
-            { scale: big ? 5 : 2.8, opacity: 0, duration: big ? 1 : 0.9, ease: "power2.out", overwrite: true },
+            {
+              scale: big ? 5 : 2.8,
+              opacity: 0,
+              duration: big ? 1 : 0.9,
+              ease: "power2.out",
+              overwrite: true,
+            },
           );
         };
         on(window, "pointermove", function (e) {
           var now = performance.now();
-          if (e.pointerType !== "mouse" || now - lastR < 140 || blocked(e.target)) return;
+          if (
+            e.pointerType !== "mouse" ||
+            now - lastR < 140 ||
+            blocked(e.target)
+          )
+            return;
           if (Math.hypot(e.clientX - lx, e.clientY - ly) < 36) return;
           lastR = now;
           lx = e.clientX;
@@ -516,8 +620,11 @@
       // preloader -> hero intro
       var pre = document.getElementById("preloader");
       if (!pre) return;
-      var
-        cnt = document.getElementById("count"),
+      // decode the big PNGs now, while the preloader is showing, so the first paint after it does not stall
+      Array.prototype.forEach.call(document.images, function (im) {
+        if (im.decode) im.decode().catch(function () {});
+      });
+      var cnt = document.getElementById("count"),
         n = { v: 0 };
       gsap.set(".hero-in", { y: 40, opacity: 0 });
       if (lenis) lenis.stop();
@@ -525,7 +632,18 @@
         onComplete: function () {
           pre.style.display = "none";
           if (lenis) lenis.start();
-          ScrollTrigger.refresh();
+          // measuring every trigger forces a full layout; do it when the browser is idle, not on the transition frame
+          (
+            window.requestIdleCallback ||
+            function (f) {
+              setTimeout(f, 250);
+            }
+          )(
+            function () {
+              ScrollTrigger.refresh();
+            },
+            { timeout: 1500 },
+          );
         },
       });
       tl.to(

@@ -108,13 +108,6 @@ The login and register pages are a demo. Passwords are stored unencrypted in the
 - A lighter mode switches on automatically for devices with 4 or fewer CPU cores, 4 GB of RAM or less, or narrow phone screens. It removes the bubbles and ripples and reduces the hero canvas work.
 - `prefers-reduced-motion` turns off most motion.
 
-## Rubric coverage
-
-- **CSS transforms and transitions:** hover and press states, card lift, morph modal, parallax, ripples.
-- **SVG animation:** waves, reef sway, map dots and rings, the AquaSave seal.
-- **Canvas:** hero ocean and the dashboard line chart.
-- **Structure:** four pages, `assets/` folder organisation, and the seal, badges and certification emblems.
-
 ## Sources for the facts on the landing page
 
 Global Affairs Canada (Pure Oceans story), Greenpeace Philippines, Daily Guardian citing the World Bank, UN INFO, and Solitude World (marine life in the Philippines). Site figures are sample data.
